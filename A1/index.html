@@ -6,12 +6,11 @@
 
 <script id="vertex-shader" type="x-shader/x-vertex">
 attribute vec2 vPosition;
-uniform float dx;
 
 void
 main()
 {
-    gl_Position = vec4(vPosition.x + dx, vPosition.y, 0.0, 1.0);
+    gl_Position = vec4(vPosition.x, vPosition.y, 0.0, 1.0);
 }
 </script>
 
@@ -32,7 +31,7 @@ main()
 </head>
 
 <body>
-<canvas id="gl-canvas" width="512" height="512">
+<canvas id="gl-canvas" width="560" height="560">
 Oops ... your browser doesn't support the HTML5 canvas element
 </canvas>
 </body>
