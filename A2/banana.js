@@ -22,11 +22,18 @@ let numAttribPerElement;
 const at = vec3(0.0, 0.0, 0.0);
 const up = vec3(0.0, 1.0, 0.0);
 
+const stomp = (p, c) => p.concat(c);
+const indices = get_faces().reduce(stomp);
+
 var vertices = get_vertices().map((v, i) => {
     return vec4(v, 1.0);
 });
 
-const indices = flatten(get_faces());
+// TRY: manual indexing
+vertices = indices.map((v, i) => {
+    // console.log(vertices[v - 1]);
+    return vertices[v - 1];
+});
 
 var colors = [
 ];
@@ -109,7 +116,11 @@ function render() {
 
     // gl.drawArrays( gl.TRIANGLES, 0, vertices.length );
     
-    gl.drawElements( gl.TRIANGLES, indices.length , gl.UNSIGNED_BYTE, 0 );
+    // gl.drawElements( gl.TRIANGLES, indices.length , gl.UNSIGNED_BYTE, 0 );
+    
+    // TRY: manual indexing
+    gl.drawArrays(gl.TRIANGLES, 0, vertices.length);
+
     // requestAnimFrame(render);
     // window.requestAnimFrame(render);
 }
